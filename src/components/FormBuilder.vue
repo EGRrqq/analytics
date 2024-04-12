@@ -1,11 +1,13 @@
 <template>
-  <fieldset>
-    <legend>
-      <h1>{{ header }}</h1>
-    </legend>
-    <FormInput ref="inputRef" placeholder="id..."></FormInput>
-    <button type="submit" @click="formSubmit">confirm</button>
-  </fieldset>
+  <form @submit.prevent="formSubmit" novalidate>
+    <fieldset>
+      <legend>
+        <h1>{{ header }}</h1>
+      </legend>
+      <FormInput ref="inputRef" placeholder="id..."></FormInput>
+      <button type="submit">confirm</button>
+    </fieldset>
+  </form>
 </template>
 
 <script lang="ts">
