@@ -1,12 +1,15 @@
 <template>
   <fieldset>
+    <legend>
+      <h1>{{ header }}</h1>
+    </legend>
     <FormInput ref="inputRef" placeholder="id..."></FormInput>
     <button type="submit" @click="formSubmit">confirm</button>
   </fieldset>
 </template>
 
 <script lang="ts">
-import { Component, Ref, Vue } from "vue-property-decorator";
+import { Component, Prop, Ref, Vue } from "vue-property-decorator";
 import FormInput from "@/components/form-items/FormInput.vue";
 
 @Component({
@@ -14,6 +17,7 @@ import FormInput from "@/components/form-items/FormInput.vue";
 })
 export default class FormBuild extends Vue {
   @Ref() readonly inputRef!: FormInput;
+  @Prop({ default: "Header", required: true }) header!: string;
 
   formSubmit() {
     this.inputRef.validateInput();

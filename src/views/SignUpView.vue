@@ -1,7 +1,6 @@
 <template>
   <div class="signUp">
-    <h1>LeadHit</h1>
-    <FormBuilder></FormBuilder>
+    <FormBuilder header="LeadHit"></FormBuilder>
   </div>
 </template>
 

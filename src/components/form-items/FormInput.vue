@@ -16,7 +16,7 @@ import { Component, Prop, Vue } from "vue-property-decorator";
 
 @Component
 export default class FormInput extends Vue {
-  @Prop({ default: "" }) placeholder!: string;
+  @Prop({ default: "placeholder", required: true }) placeholder!: string;
 
   inputValue = "";
   error = "";
