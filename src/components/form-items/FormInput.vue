@@ -3,7 +3,7 @@
     <input
       type="text"
       v-model="inputValue"
-      :placeholder="id"
+      :placeholder="placeholder"
       @input="validateInput"
       required
     />
@@ -16,13 +16,13 @@ import { Component, Prop, Vue } from "vue-property-decorator";
 
 @Component
 export default class FormInput extends Vue {
-  @Prop({ default: "" }) placeholder: string;
+  @Prop({ default: "" }) placeholder!: string;
 
   inputValue = "";
   error = "";
 
   validateInput() {
-    this.inputValue.length < 24
+    this.inputValue.length !== 24
       ? (this.error = "id сайта должен содержать 24 символа")
       : (this.error = "");
   }
