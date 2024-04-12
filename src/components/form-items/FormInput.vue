@@ -23,7 +23,7 @@ export default class FormInput extends Vue {
 
   validateInput() {
     this.inputValue.length !== 24
-      ? (this.error = "id сайта должен содержать 24 символа")
+      ? (this.error = `id сайта должен содержать 24 символа. Текущая длина ${this.inputValue.length}.`)
       : (this.error = "");
   }
 }
