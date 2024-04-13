@@ -1,5 +1,5 @@
 <template>
-  <form @submit.prevent="formSubmit" novalidate>
+  <form method="get" @submit.prevent="formSubmit" novalidate>
     <fieldset>
       <legend>
         <h1>{{ header }}</h1>
@@ -21,8 +21,28 @@ export default class FormBuild extends Vue {
   @Ref() readonly inputRef!: FormInput;
   @Prop({ default: "Header", required: true }) header!: string;
 
-  formSubmit() {
+  async formSubmit() {
     this.inputRef.validateInput();
+
+    if (!this.inputRef.error) {
+      const data = await fetch(
+        "https://track-api.leadhit.io/client/test_auth",
+        {
+          method: "GET",
+          headers: {
+            "Api-Key": "5f8475902b0be670555f1bb3:eEZn8u05G3bzRpdL7RiHCvrYAYo",
+            "Leadhit-Site-Id": `${this.inputRef.inputValue}`,
+          },
+        }
+      ).then((res) => res.json());
+
+      console.log(data);
+      if (data.message === "ok") {
+        localStorage.setItem("Leadhit-Site-Id", this.inputRef.inputValue);
+      } else {
+        this.inputRef.error = "некорректный id сайта.";
+      }
+    }
   }
 }
 </script>
