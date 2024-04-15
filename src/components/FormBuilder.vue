@@ -63,11 +63,8 @@ export default class FormBuild extends Vue {
 
     if (this.inputRef.isValid) {
       await this.isAuth()
-        .then()
-        .catch((e: ErrData[]) => {
-          console.error("auth_err:", e);
-          this.inputRef.error = "некорректный id сайта.";
-        });
+        .then(() => this.$router.push("analytics"))
+        .catch(() => (this.inputRef.error = "некорректный id сайта."));
     }
   }
 }
