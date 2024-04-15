@@ -4,7 +4,7 @@
       type="text"
       v-model="inputValue"
       :placeholder="placeholder"
-      @input="validateInput"
+      @input="setError"
       required
     />
     <p v-if="error" class="error">{{ error }}</p>
@@ -21,10 +21,14 @@ export default class FormInput extends Vue {
   inputValue = "";
   error = "";
 
-  validateInput() {
-    this.inputValue.length !== 24
-      ? (this.error = `id сайта должен содержать 24 символа. Текущая длина ${this.inputValue.length}.`)
-      : (this.error = "");
+  get isValid(): boolean {
+    return this.inputValue.length === 24;
+  }
+
+  setError() {
+    this.isValid
+      ? (this.error = "")
+      : (this.error = `id сайта должен содержать 24 символа. Текущая длина ${this.inputValue.length}.`);
   }
 }
 </script>
