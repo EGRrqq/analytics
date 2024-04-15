@@ -63,7 +63,10 @@ export default class FormBuild extends Vue {
 
     if (this.inputRef.isValid) {
       await this.isAuth()
-        .then(() => this.$router.push("analytics"))
+        .then(() => {
+          localStorage.setItem("leadhit-site-id", this.inputRef.inputValue);
+          this.$router.push("analytics");
+        })
         .catch(() => (this.inputRef.error = "некорректный id сайта."));
     }
   }
